@@ -55,3 +55,21 @@ SURROGATE KEY: - An Artificial key, usually an auto-increment number.
 			   - at that point we cannot use long data aas primary krys in joint and other thing so we create artificial key as primary key.
 			   
 			   
+__________JOINS___4_
+
+-- 1. INNER JOIN ----
+INTERSECTION PART : means data in both the table but in some part so the middle part only.
+
+-- 2. LEFT JOIN ---
+All the records from the left table no matter whetherthe records are in the other table or not.
+
+==> what happen if in left join data some are not present from right side as intersection is also a part that time it take as null value.
+
+
+-- 3. RIGHT JOIN ---
+right join is just a reverse of left join 
+- we always use left join as right join not that much use.
+
+-- 4. FULL JOIN ---
+full Join : i want all the data from both the table no matter does it match or not.
+- in mysql full join not supported so we use UNION
