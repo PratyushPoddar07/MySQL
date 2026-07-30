@@ -1,0 +1,57 @@
+___________DDL__________
+ddl -> DDL stands for DATA DEFINATION LANGUAGE. These are SQL command used to define modify, or delete the structure of Database objects such as TABLES, INDEXES, AND SCHEMAS.
+___________DDL COMMANDS__________
+- CREATE
+- ALTER
+-DROP
+-TRUNCATE
+
+______CONSTRAINTS_____
+constraints -> constraints in SQL are rules applied to Table columns to enforce Data integrity and accuracy.They Ensure that the data entered into a database is valid,consistent, and follows the rules you define.
+______CONSTRAINTS Type_____
+- NOT NULL
+- UNIQUE
+- PRIMARY KEY
+- CHECK
+- DEFAULT
+
+____DROP___
+drop it will delete the that table
+____TRUNCATE___
+truncate only remove data from that table but the structure still exist
+__ALTER__
+alter is used to modify the table column whether to add, rename etc
+
+_____UNIQUE KEY______
+UNIQUE KEY : - Ensures that all values in a column( or combination of columns) are unique.
+			 - Can have one Null(in most databases) per column.
+			 - You can have multiple unique key in a table.
+			 
+_______PRIMARY KEY____________
+PRIMARY KEY: - Uniquely identifies each record in a table.
+			 - Cannot have null values.
+			 - only one primary key per table.
+			 
+_______FOREIGN KEY ___________
+FOREIGN KEY: - Create a link between two tables.
+			 - Ensures that values in a column exist in another table primary key.
+			 
+
+______CANDIDATE KEY____________
+CANDIDATE KEY: - A Column, or set of columns, that can uniquely identify a record.
+			   - A table can have multiple candidate keys.
+			   - Primary key is chosen from candidate keys.
+			   - we get multiple option for primary key as many column can be unique and not null.
+			   
+			   
+_______COMPOSITE KEY______________
+COMPOSITE KEY: - A primary key made of two or more columns.
+			   - Uniquely identifies a record using a combination of columns.
+			   - when no column be the primary key then we combine the column to make primarykey.
+			   
+________SURROGATE KEY_______________
+SURROGATE KEY: - An Artificial key, usually an auto-increment number.
+			   - used when natural keys are inconvenient or too long.
+			   - at that point we cannot use long data aas primary krys in joint and other thing so we create artificial key as primary key.
+			   
+			   
