@@ -52,7 +52,7 @@ COMPOSITE KEY: - A primary key made of two or more columns.
 ________SURROGATE KEY_______________
 SURROGATE KEY: - An Artificial key, usually an auto-increment number.
 			   - used when natural keys are inconvenient or too long.
-			   - at that point we cannot use long data aas primary krys in joint and other thing so we create artificial key as primary key.
+			   - at that point we cannot use long data aas primary krys in joins and other thing so we create artificial key as primary key.
 			   
 			   
 __________JOINS___4_
@@ -73,3 +73,55 @@ right join is just a reverse of left join
 -- 4. FULL JOIN ---
 full Join : i want all the data from both the table no matter does it match or not.
 - in mysql full join not supported so we use UNION
+
+
+______DML COMMANDS__________
+
+-- INSERT --
+WE use INSERT when we want to add some data in the table
+format: 
+INSERT INTO TABLE_NAME
+VALUES
+	.......
+;
+
+-- UPDATE --
+WE USE UPDATE TO MODIFY TABLE DATA NOT TO CHANGE THE COLUMN NAME FOR THAT WE USE ALTER
+
+FORMAT:
+
+UPDATE customers [TABLE NAME]
+SET name ='sam' [ NEW DATA VALUE]
+WHERE id = 101; [ LOCATION OF WHERE TO CHANGE/PREVIOUS DATA LOCATION]
+
+-- DELETE --
+WE USE IT TO DELETE THE DATA / Table
+
+FORMAT: 
+DELETE FROM customers
+WHERE email = 'aa';
+
+
+-- TRANSFORMATION --
+
+TRANSFORMATION: an automated process where the MySQL Optimizer rewrites a SQL query into a more efficient, equivalent form before executing it.
+- WE ARE SQUEEZING THE ROW AND COL
+
+-- WINDOW FUNCTION --
+WINDOW FUNCTION: WINDOW FUNCTION IN SQL ARE SPECIAL FUNCATIONS THAT PERFORM CALCULATIONS ACROSS A SET OF ROWS - BUT WITHOUT COLLAPSING THEM INTO A SINGLE OUTPUT ROW(UNLIKE AGGREGATE FUNCATION).
+
+THEY ALLOW YOU TO DO THINGS LIKE RANKING, RUNNING TOTALS, MOVING AVERAGES, AND COMPARISIONS BETWEEN ROWS WHILE STILL KEEPING ALL THE ROWS IN THE RESULT.
+
+
+
+Q. WHY WINDOW FUNCTION ARE DIFFERENT FROM AGGREGATE FUNCATION ?
+ 
+| Feature | Aggregate Functions | Window Functions |
+| ------- |---------------- --- |------------- --- |
+| **Purpose** | Summarize data (total, average, min, max, count) | Provide per-row calculations (rank, running total, moving average) |
+| **Row Output** | Collapse rows into one per group | Retain all rows, add extra columns |
+| **Syntax** | Uses ``GROUP ``BY`` | Uses ``OVER ``(PARTITION ``BY ``… ``ORDER ``BY ``…)`` |
+| **Example Use Case** | Total sales per year | Running total of sales per day |
+| **Visibility of Detail** | Loses individual row detail | Keeps row detail + adds group metrics |
+
+
