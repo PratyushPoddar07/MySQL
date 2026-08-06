@@ -125,3 +125,75 @@ Q. WHY WINDOW FUNCTION ARE DIFFERENT FROM AGGREGATE FUNCATION ?
 | **Visibility of Detail** | Loses individual row detail | Keeps row detail + adds group metrics |
 
 
+What is a Frame Clause?
+A partition groups rows (e.g., by department, by date).
+
+A frame is a moving subset of that partition, defined relative to the current row.
+
+Without a frame clause, SQL uses a default frame: RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW.
+
+📌 Frame Units
+ROWS → Counts physical rows.
+
+Example: ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING → current row + one before + one after.
+
+RANGE → Groups rows with the same ordering value.
+
+Example: RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW → all rows up to current value.
+
+GROUPS (in newer SQL standards) → Operates on groups of peer rows with the same sort key.
+
+📊 Common Frame Extents
+UNBOUNDED PRECEDING → Start from the first row in the partition.
+
+CURRENT ROW → Only the current row.
+
+N PRECEDING / N FOLLOWING → N rows before or after the current row.
+
+UNBOUNDED FOLLOWING → Extend to the last row in the partition.
+
+⚡ Real-Life SQL Examples
+1. Running Total (Cumulative Sum)
+sql
+SELECT SalesDate,
+       SalesAmount,
+       SUM(SalesAmount) OVER (
+           ORDER BY SalesDate
+           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) AS RunningTotal
+FROM Sales;
+👉 Each row shows its own amount plus the cumulative total up to that date.
+
+2. Moving Average (Rolling Window)
+sql
+SELECT SalesDate,
+       SalesAmount,
+       AVG(SalesAmount) OVER (
+           ORDER BY SalesDate
+           ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+       ) AS MovingAvg
+FROM Sales;
+👉 Each row shows the average of itself and the two previous rows — useful for smoothing trends.
+
+3. Centered Rolling Average
+sql
+SELECT SalesDate,
+       SalesAmount,
+       AVG(SalesAmount) OVER (
+           ORDER BY SalesDate
+           ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING
+       ) AS CenteredAvg
+FROM Sales;
+
+
+
+------------ RANKING -----------------
+TYPE OF RANKING: ROW_NUMBER() | RANK() | DENSE_RANK()
+
+
+DATA : 90,90,100
+ROW_NUMBER: BASICALLY THE UNIQUE NUMBER FOR EACH ROW NO MATTER THE ROW HAS SAME DATA. LIKE 1,2,3...
+RANK() : IT IS ALSO A NUMBER BUT SAME DATA GET SAME NUMBER OR IN A SAME GRP BUT THE NEW ONE OR NEXT DATA GET THE RANK OF THE ROW_NUMBER FOR STARTING. LIKE 1,1,3
+DENSE_RANK(): SIMILAR TO RANK BUT NEXT DATA GET THE NEXT NUMBER LIKE 1,1,2
+
+
